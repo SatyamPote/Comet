@@ -11,22 +11,8 @@ body {
   padding: 20px;
 }
 
-.content {
+.main-content {
   margin-top: 20px;
-}
-
-.common, .daily {
-  margin-bottom: 30px;
-}
-
-h2 {
-  font-size: 1.5rem;
-  border-bottom: 1px dashed #00FF00;
-  padding-bottom: 10px;
-}
-
-.video-section {
-  margin-top: 30px;
 }
 
 .search-bar {
@@ -42,7 +28,57 @@ h2 {
   background-color: black;
 }
 
+.music-player {
+  margin-top: 30px;
+}
+
+.song-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.album-cover {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.song-details {
+  text-align: left;
+  color: #00FF00;
+}
+
+.song-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.song-artist {
+  font-size: 1rem;
+}
+
+.controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.control-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #00FF00;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .video-list {
+  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -66,10 +102,18 @@ h2 {
   color: #00FF00;
 }
 
-.video-player {
-  margin-top: 30px;
+footer-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background-color: black;
 }
 
-iframe {
-  border: 2px solid #00FF00;
+.command-line {
+  color: #00FF00;
+  font-size: 1rem;
+  font-weight: bold;
 }
