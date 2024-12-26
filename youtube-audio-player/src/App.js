@@ -10,22 +10,13 @@ const App = () => {
   const [energy, setEnergy] = useState(80); // Energy level
   const [videos, setVideos] = useState([]);
   const [searchQuery, setSearchQuery] = useState('music');
-  const [loading, setLoading] = useState(false);  // Loading state for videos
-  const [error, setError] = useState(null);  // Error state
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   // Fetch videos when search query changes
   useEffect(() => {
     const getVideos = async () => {
-      setLoading(true); // Set loading to true when starting to fetch videos
-      setError(null);  // Reset any previous errors
-      try {
-        const fetchedVideos = await fetchYouTubeVideos(searchQuery);
-        setVideos(fetchedVideos);
-      } catch (error) {
-        setError('Error fetching videos. Please try again.');
-      } finally {
-        setLoading(false);  // Set loading to false once fetch is complete
-      }
+      const fetchedVideos = await fetchYouTubeVideos(searchQuery);
+      setVideos(fetchedVideos);
     };
     getVideos();
   }, [searchQuery]);
@@ -33,6 +24,14 @@ const App = () => {
   // Update energy after task completion
   const handleTaskCompletion = (reward) => {
     setEnergy((prevEnergy) => Math.min(100, prevEnergy + reward));
+  };
+
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleVideoClick = (video) => {
+    setSelectedVideo(video);
   };
 
   return (
@@ -68,26 +67,42 @@ const App = () => {
 
         <div className="video-section">
           <h2>Music Videos</h2>
-          {loading && <p>Loading videos...</p>}  {/* Show loading message */}
-          {error && <p style={{ color: 'red' }}>{error}</p>}  {/* Show error message */}
+          <div className="search-bar">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={handleSearch}
+              placeholder="Search for music..."
+              className="search-input"
+            />
+          </div>
           <div className="video-list">
             {videos.map((video) => (
-              <div key={video.id.videoId} className="video-item">
+              <div key={video.id.videoId} className="video-item" onClick={() => handleVideoClick(video)}>
                 <img
                   src={video.snippet.thumbnails.medium.url}
                   alt={video.snippet.title}
                   className="video-thumbnail"
                 />
                 <div className="video-title">{video.snippet.title}</div>
-                <div className="video-actions">
-                  <button onClick={() => setSearchQuery(video.snippet.title)}>
-                    Play
-                  </button>
-                </div>
               </div>
             ))}
           </div>
         </div>
+
+        {selectedVideo && (
+          <div className="video-player">
+            <h2>Now Playing: {selectedVideo.snippet.title}</h2>
+            <iframe
+              width="100%"
+              height="500px"
+              src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}?autoplay=1`}
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              title="YouTube Video Player"
+            ></iframe>
+          </div>
+        )}
       </div>
       <FooterNav />
     </div>
