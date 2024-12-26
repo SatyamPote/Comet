@@ -1,0 +1,53 @@
+body {
+  background-color: #000000;
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  padding: 20px;
+}
+
+h2 {
+  border-bottom: 1px dashed #00ff00;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.video-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.video-item {
+  background-color: #111111;
+  border: 1px solid #00ff00;
+  padding: 10px;
+  width: 200px;
+}
+
+.video-thumbnail {
+  width: 100%;
+  height: auto;
+}
+
+.video-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+button {
+  background-color: #00ff00;
+  border: none;
+  padding: 5px 10px;
+  color: black;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #00cc00;
+}
