@@ -1,0 +1,194 @@
+.music-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000; /* Black background */
+  padding: 10px;
+  box-shadow: 0 -2px 5px rgba(0, 255, 0, 0.5); /* Green glow effect */
+  color: #00ff00; /* Green text color */
+  font-family: "Courier New", Courier, monospace; /* Monospace font */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.song-info {
+  text-align: center;
+  margin-bottom: 5px;
+  width: 95%;
+}
+
+.song-title {
+  font-size: 1rem; /* Reduced font size */
+  font-weight: bold;
+  margin-bottom: 2px; /* Reduced margin */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90vw;
+}
+
+.artist {
+  font-size: 0.9rem; /* Reduced font size */
+  color: #00aa00; /* Slightly darker green for artist */
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  margin-bottom: 5px; /* Reduced margin */
+}
+
+.play-pause-button,
+.prev-button,
+.next-button {
+  background: none;
+  border: none;
+  padding: 5px; /* Reduced padding */
+  cursor: pointer;
+  font-size: 1.2rem; /* Reduced font size */
+  color: #00ff00; /* Green button color */
+  /* Terminal-style border */
+  border: 1px solid #00ff00;
+  border-radius: 4px;
+}
+
+.prev-button,
+.next-button {
+  margin: 0 10px; /* Reduced margin */
+}
+
+.progress-bar {
+  width: 90%;
+  margin-top: 5px; /* Reduced margin */
+}
+
+/* Using the system's default range input styling for a more retro look */
+.progress-bar input[type="range"] {
+  -webkit-appearance: none; /* Remove default appearance */
+  width: 100%;
+  height: 5px;
+  background: #00ff00; /* Green progress bar */
+  outline: none;
+  border: 1px solid #00ff00; /* Green border */
+  border-radius: 5px;
+}
+
+/* Style the "thumb" (the draggable part) for WebKit browsers (Chrome, Safari) */
+.progress-bar input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px; /* Reduced size */
+  height: 10px; /* Reduced size */
+  border-radius: 50%;
+  background: #00ff00;
+  border: 1px solid #00ff00;
+  cursor: pointer;
+}
+
+/* Style the thumb for Mozilla Firefox */
+.progress-bar input[type="range"]::-moz-range-thumb {
+  width: 10px; /* Reduced size */
+  height: 10px; /* Reduced size */
+  border-radius: 50%;
+  background: #00ff00;
+  border: 1px solid #00ff00;
+  cursor: pointer;
+}
+
+.time-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem; /* Reduced font size */
+  margin-top: 5px;
+  width: 95%;
+}
+
+.current-time,
+.total-time {
+  color: #00aa00; /* Slightly darker green for times */
+}
+
+/* Media Queries for Responsiveness */
+/* Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .player-controls {
+    width: 100%; /* Adjust width */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    justify-content: space-around;
+    padding: 0 10px;
+  }
+  .song-info {
+    margin-bottom: 5px; /* Reduce margin */
+  }
+
+  .song-title {
+    font-size: 0.8rem; /* Reduce font size */
+  }
+
+  .artist {
+    font-size: 0.7rem; /* Reduce font size */
+  }
+  .prev-button,
+  .next-button,
+  .play-pause-button {
+    flex: 1;
+    margin: 0;
+    padding: 8px;
+    font-size: 0.5rem;
+    border: 1px solid #00ff00;
+  }
+  .progress-bar {
+    width: 95%; /* Full width on mobile */
+  }
+
+  .time-labels {
+    font-size: 0.6rem; /* Reduce font size */
+  }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .player-controls {
+    width: 80%; /* Adjust width */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  }
+  .prev-button,
+  .next-button,
+  .play-pause-button {
+    flex: 1;
+    margin: 2px;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #00ff00;
+  }
+}
+
+/* Small Desktop (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .prev-button,
+  .next-button,
+  .play-pause-button {
+    flex: 1;
+    margin: 2px;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #00ff00;
+  }
+}
+
+/* Large Desktop (1025px and up) */
+@media (min-width: 1025px) {
+  .prev-button,
+  .next-button,
+  .play-pause-button {
+    flex: 1;
+    margin: 2px;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #00ff00;
+  }
+}

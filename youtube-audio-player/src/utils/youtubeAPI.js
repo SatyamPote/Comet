@@ -1,22 +1,26 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_KEY = 'AIzaSyAlBGr8_mM4uVw3rEuEwSt_HtmIs3JZqEA';  // Your API Key here
-const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
+// TEMPORARY: Hardcode API key here for testing
+const API_KEY = "AIzaSyDitWumcDBEDSv0tdASUvh1OJSclf0vBtg"; // Your provided API key
 
 export const fetchYouTubeVideos = async (query) => {
   try {
-    const response = await axios.get(BASE_URL, {
-      params: {
-        part: 'snippet',
-        maxResults: 10,
-        q: query,
-        type: 'video',
-        key: API_KEY,
-      },
-    });
+    const response = await axios.get(
+      "https://www.googleapis.com/youtube/v3/search",
+      {
+        params: {
+          part: "snippet",
+          q: query,
+          type: "video",
+          videoCategoryId: "10", // Music category
+          maxResults: 20,
+          key: API_KEY,
+        },
+      }
+    );
     return response.data.items;
   } catch (error) {
-    console.error('Error fetching YouTube videos:', error);
+    console.error("Error fetching videos from YouTube API:", error);
     return [];
   }
 };

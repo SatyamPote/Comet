@@ -1,0 +1,130 @@
+.header {
+  background-color: black;
+  color: #00ff00;
+  border-bottom: 1px dashed #00ff00;
+  width: 100%; /* Ensure header takes full width */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  white-space: nowrap;
+  padding-left: 15px;
+}
+.logo-comet {
+  color: #00ff00; /* Green color for "Comet" */
+}
+
+.search-form {
+  display: flex;
+  align-items: center; /* Vertically center the search bar */
+  flex-grow: 1; /* Allow search form to take up available space */
+  padding-left: 25px;
+  max-width: 500px; /* Limit search form width */
+}
+
+.search-input {
+  padding: 5px;
+  font-size: 1rem;
+  background-color: black;
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  width: 100%;
+}
+
+.search-button {
+  padding: 5px 10px;
+  font-size: 1rem;
+  background-color: black;
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.profile-button {
+  padding: 5px 10px;
+  font-size: 1rem;
+  background-color: black;
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap; /* Prevent button text from wrapping */
+  margin-left: auto;
+}
+
+/* Media Queries for Responsiveness */
+/* Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .header-container {
+    flex-wrap: wrap; /* Allow header items to wrap */
+  }
+
+  .logo {
+    margin-bottom: 10px;
+    font-size: 1.2rem; /* Reduce font size for smaller screens */
+    padding-left: 5px;
+    margin-right: auto; /* Push logo to the left */
+  }
+
+  .search-form {
+    width: 100%; /* Take full width on mobile */
+    margin-bottom: 10px;
+    padding-left: 0px;
+    margin-right: auto; /* Center search form */
+    margin-left: auto;
+    order: 3; /* Move search form below logo and login button */
+  }
+
+  .search-input {
+    font-size: 0.9rem;
+  }
+
+  .search-button {
+    font-size: 0.9rem;
+  }
+  .profile-button {
+    margin-left: auto;
+    font-size: 0.9rem; /* Reduce font size for smaller screens */
+    order: 2;
+    margin-bottom: 15px;
+    padding-right: 5px;
+  }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .search-form {
+    max-width: 40%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .profile-button {
+    margin-left: auto;
+    font-size: 0.9rem;
+    order: 2;
+    margin-bottom: 10px;
+  }
+  .logo {
+    margin-right: auto; /* Push logo to the left */
+  }
+}
+
+/* Small Desktop (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .search-form {
+    max-width: 50%;
+  }
+}

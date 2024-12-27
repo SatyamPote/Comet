@@ -1,0 +1,76 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px dashed #00ff00;
+  margin: 20px auto;
+  width: 300px;
+}
+
+.register-container h2 {
+  color: #00ff00;
+  margin-bottom: 20px;
+}
+
+.register-container input {
+  background-color: black;
+  color: #00ff00;
+  border: 1px dashed #00ff00;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.register-container button {
+  background-color: black;
+  color: #00ff00;
+  border: 1px dashed #00ff00;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.register-container .error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* Media Queries for Responsiveness */
+/* Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .register-container {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+  }
+
+  .register-container input {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  .register-container button {
+    padding: 8px 15px;
+  }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .register-container {
+    width: 70%;
+  }
+}
+
+/* Small Desktop (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .register-container {
+    width: 50%;
+  }
+}
+
+/* Large Desktop (1025px and up) */
+@media (min-width: 1025px) {
+  .register-container {
+    width: 300px; /* Fixed width on large screens */
+  }
+}

@@ -1,12 +1,17 @@
-/* Global Reset */
-* {
+html {
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
+  -ms-text-size-adjust: 100%; /* Prevent font scaling in landscape */
+}
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
+  color: #00ff00;
 }
 
-body {
-  font-family: 'Courier New', Courier, monospace;
-  background-color: #000;
-  color: #00FF00;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }

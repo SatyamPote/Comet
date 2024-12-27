@@ -1,0 +1,49 @@
+/* src/components/Playlist/PlaylistSection.css */
+
+.playlist-section {
+    margin-top: 20px;
+    color: #00ff00;
+    width: 95%;
+  }
+  
+  .playlist-section h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .playlist-section ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .playlist-section li {
+    background-color: #000;
+    border: 1px solid #00ff00;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .playlist-section li:hover {
+    background-color: #333;
+  }
+  
+  /* Responsive design adjustments */
+  @media (max-width: 768px) {
+    .playlist-section {
+      width: 100%;
+    }
+  
+    .playlist-section li {
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  .empty-playlist-message {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #00aa00; /* Slightly darker green */
+  }

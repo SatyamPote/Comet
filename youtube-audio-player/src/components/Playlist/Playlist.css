@@ -1,0 +1,62 @@
+.playlist {
+  margin-top: 20px;
+  color: #00ff00;
+}
+
+.playlist h3 {
+  text-align: center;
+}
+
+.playlist ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.playlist li {
+  margin: 10px 0;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.playlist li:hover {
+  color: #00aa00;
+}
+/* Media Queries for Responsiveness */
+/* Mobile (<= 480px) */
+@media (max-width: 480px) {
+    .playlist {
+      margin-top: 10px;
+    }
+  
+    .playlist li {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Tablet (481px - 768px) */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .playlist {
+      margin-top: 15px;
+    }
+  
+    .playlist li {
+      font-size: 0.95rem;
+    }
+  }
+  
+  /* Small Desktop (769px - 1024px) */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .playlist {
+      margin-top: 18px;
+    }
+  
+    .playlist li {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Large Desktop (1025px and up) */
+  @media (min-width: 1025px) {
+    /* No specific changes for large desktops */
+  }

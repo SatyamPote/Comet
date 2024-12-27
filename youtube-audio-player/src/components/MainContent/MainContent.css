@@ -1,0 +1,43 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 10px; /* Default padding */
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .main-content {
+    width: 90%;
+    padding: 15px;
+  }
+  .main-content .search-results-section {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Small Desktop (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-content {
+    width: 80%;
+    padding: 20px;
+  }
+  .main-content .search-results-section {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Large Desktop (1025px and up) */
+@media (min-width: 1025px) {
+  .main-content {
+    width: 70%;
+    padding: 25px;
+  }
+  .main-content .search-results-section {
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -1,98 +1,124 @@
-import React, { useState, useEffect } from 'react';
-import { fetchYouTubeVideos } from './utils/youtubeAPI';
-import Header from './components/Header';
-import FooterNav from './components/FooterNav';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Header from "./components/Header/Header";
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
+import MainContent from "./components/MainContent/MainContent";
+import Footer from "./components/Footer/Footer";
+import PlaylistSection from "./components/Playlist/PlaylistSection";
+import MobilePlayOverlay from "./components/UI/MobilePlayOverlay";
+import { fetchYouTubeVideos } from "./utils/youtubeAPI";
+import "./App.css";
 
 const App = () => {
-  const [searchQuery, setSearchQuery] = useState('music');
-  const [videos, setVideos] = useState([]);
-  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+  const [currentSong, setCurrentSong] = useState(null);
+  const [playlist, setPlaylist] = useState([]);
+  const [showMobileOverlay, setShowMobileOverlay] = useState(true);
 
-  // Fetch videos based on search query
   useEffect(() => {
-    const getVideos = async () => {
-      const fetchedVideos = await fetchYouTubeVideos(searchQuery);
-      setVideos(fetchedVideos);
-    };
-    getVideos();
-  }, [searchQuery]);
+    const storedLoggedInStatus = JSON.parse(localStorage.getItem("isLoggedIn"));
+    if (storedLoggedInStatus) {
+      setIsLoggedIn(storedLoggedInStatus);
+    }
+  }, []);
 
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
+  // Fetch initial songs on login
+  useEffect(() => {
+    if (isLoggedIn) {
+      const defaultSearchTerm = "classic rock";
+      handleSearch(defaultSearchTerm);
+    }
+  }, [isLoggedIn]);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    localStorage.setItem("isLoggedIn", "true");
   };
 
-  const handleVideoClick = (video) => {
-    setSelectedVideo(video);
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setCurrentSong(null);
+    setSearchResults([]);
+    setPlaylist([]);
+    localStorage.setItem("isLoggedIn", "false");
+  };
+
+  const handleRegister = () => {
+    setShowRegister(false);
+    setIsLoggedIn(true);
+    localStorage.setItem("isLoggedIn", "true");
+  };
+
+  const toggleRegister = () => {
+    setShowRegister(!showRegister);
+  };
+
+  const handleSearch = async (query) => {
+    try {
+      const results = await fetchYouTubeVideos(query);
+      setSearchResults(results);
+      setCurrentSong(null);
+    } catch (error) {
+      console.error("Error in handleSearch:", error);
+    }
+  };
+
+  const handlePlay = (song) => {
+    setCurrentSong(song);
+  };
+
+  const handleAddToPlaylist = (song) => {
+    setPlaylist((prevPlaylist) => [...prevPlaylist, song]);
+  };
+
+  const handleMobilePlay = () => {
+    setShowMobileOverlay(false);
   };
 
   return (
     <div className="app">
-      <Header />
-      <div className="main-content">
-        {/* Search Bar */}
-        <div className="search-bar">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            placeholder="Search for music..."
-            className="search-input"
-          />
-        </div>
-
-        {/* Music Player */}
-        {selectedVideo && (
-          <div className="music-player">
-            <div className="song-info">
-              <img
-                src={selectedVideo.snippet.thumbnails.medium.url}
-                alt={selectedVideo.snippet.title}
-                className="album-cover"
-              />
-              <div className="song-details">
-                <div className="song-title">{selectedVideo.snippet.title}</div>
-                <div className="song-artist">Artist: Unknown</div>
-              </div>
-            </div>
-
-            {/* Background Video Embed */}
-            <iframe
-              width="100%"
-              height="300px"
-              src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}?autoplay=1&loop=1&playlist=${selectedVideo.id.videoId}`}
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              title="YouTube Music Player"
-            ></iframe>
-
-            {/* < # > Button */}
-            <div className="control-button">
-              <button className="control-button">"#" </button>
-            </div>
-          </div>
+      <Header
+        isLoggedIn={isLoggedIn}
+        onLogout={handleLogout}
+        onSearch={handleSearch}
+      />
+      <div className="content">
+        {!isLoggedIn && !showRegister && (
+          <>
+            <Login onLogin={handleLogin} />
+            <p>
+              Don't have an account?{" "}
+              <button onClick={toggleRegister}>Register</button>
+            </p>
+          </>
         )}
-
-        {/* Video Search Results */}
-        <div className="video-list">
-          {videos.map((video) => (
-            <div
-              key={video.id.videoId}
-              className="video-item"
-              onClick={() => handleVideoClick(video)}
-            >
-              <img
-                src={video.snippet.thumbnails.medium.url}
-                alt={video.snippet.title}
-                className="video-thumbnail"
-              />
-              <div className="video-title">{video.snippet.title}</div>
-            </div>
-          ))}
-        </div>
+        {!isLoggedIn && showRegister && (
+          <>
+            <Register onRegister={handleRegister} />
+            <p>
+              Already have an account?{" "}
+              <button onClick={toggleRegister}>Login</button>
+            </p>
+          </>
+        )}
+        {isLoggedIn && (
+          <>
+            <MainContent
+              searchResults={searchResults}
+              currentSong={currentSong}
+              handlePlay={handlePlay}
+              handleAddToPlaylist={handleAddToPlaylist}
+            />
+            {playlist.length > 0 && (
+              <PlaylistSection playlist={playlist} onSelectSong={handlePlay} />
+            )}
+          </>
+        )}
+        {showMobileOverlay && <MobilePlayOverlay onPlay={handleMobilePlay} />}
       </div>
-
-      <FooterNav />
+      <Footer />
     </div>
   );
 };

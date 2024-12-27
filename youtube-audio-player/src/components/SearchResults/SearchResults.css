@@ -1,0 +1,93 @@
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin: auto;
+}
+
+.search-item {
+  width: 250px; /* Default width */
+  text-align: center;
+  border: 1px dashed #00ff00;
+  padding: 5px;
+  margin: 10px; /* Added some margin */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center elements vertically */
+}
+
+.thumbnail {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.title {
+  font-size: 0.9rem;
+  margin: 5px 0; /* Adjusted margin */
+  color: #00ff00;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.search-item:hover .thumbnail {
+  box-shadow: 0 0 10px #00ff00; /* Add a glow effect on hover */
+}
+
+.search-item:hover .title {
+  color: #90ee90; /* Change text color on hover */
+}
+
+.add-to-playlist-button {
+  background-color: black;
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  padding: 5px 10px;
+  margin-top: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.add-to-playlist-button:hover {
+  background-color: #333;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .search-results {
+    width: 95%;
+  }
+  .search-item {
+    width: 100%;
+  }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .search-results {
+    width: 90%;
+  }
+  .search-item {
+    width: 48%; /* Adjust as needed */
+  }
+}
+
+/* Small Desktop (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .search-item {
+    width: 30%; /* Adjust as needed */
+  }
+}
+
+/* Large Desktop (1025px and up) */
+@media (min-width: 1025px) {
+  .search-item {
+    width: 23%; /* Adjust as needed */
+  }
+}
