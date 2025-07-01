@@ -1,160 +1,242 @@
 # Comet: Retro-Themed Music & Video Search Platform
 
-Welcome to **Comet**, a music and video search platform inspired by retro aesthetics. Comet allows you to search, view, and play videos directly from YouTube with a sleek, nostalgic green terminal-style interface. It’s built using React and integrates seamlessly with the YouTube Data API for fetching videos. Whether you're into classic vibes or modern tunes, Comet bridges them in a retro-inspired way!
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/SatyamPote/Comet/pulls)
+
+Comet is a retro-inspired music and video search web app that lets you search, view, and play YouTube videos with a green terminal-style interface. Built with React, JavaScript, CSS, HTML, and the YouTube Data API, it delivers a nostalgic yet modern experience for music and video enthusiasts.
 
 ---
 
-## 🎨 Features
+## 📚 Table of Contents
 
-### User Interface  
-- **Retro Terminal Theme:** Aesthetic green-on-black terminal interface with pixel-perfect typography.  
-- **Responsive Design:** Fully responsive, works across devices and screen sizes.  
-
-### Core Functionality  
-- **Search Videos and Music:** Quickly search for music or videos using keywords via the YouTube Data API.  
-- **Dynamic Results:** Displays a list of search results with thumbnails and titles.  
-- **Video Playback:** Plays YouTube videos seamlessly in an embedded player.  
-- **Auto-Select First Result:** The first video is automatically selected for playback after a search.  
+- [Features](#features)
+- [Tech Stack & Tools](#tech-stack--tools)
+- [APIs Used](#apis-used)
+- [Screenshots & Demo](#screenshots--demo)
+- [Installation & Setup](#installation--setup)
+- [Environment Variables](#environment-variables)
+- [Usage Guide](#usage-guide)
+- [Development Scripts](#development-scripts)
+- [Known Issues](#known-issues)
+- [Future Enhancements](#future-enhancements)
+- [Contributing](#contributing)
+- [License](#license)
+- [Feedback & Support](#feedback--support)
+- [Credits](#credits)
 
 ---
 
-## 🚀 Getting Started
+## ✨ Features
 
-Follow these steps to get the project up and running locally.
+- **Retro Terminal Theme:** Green-on-black terminal UI with pixel-perfect typography and smooth animations.
+- **Responsive Design:** Works flawlessly across desktops, tablets, and smartphones.
+- **YouTube Video & Music Search:** Search for any video or song using YouTube Data API v3.
+- **Dynamic Search Results:** Displays thumbnails, titles, and meta info for each result.
+- **Embedded Playback:** Play videos directly within the app using an embedded player.
+- **Auto-Select & Play:** Automatically plays the first result on any search.
+- **Playlist Support:** (Planned) Save and organize your favorite videos.
+- **User Authentication:** (Planned) Sign in for personalized experience.
+- **History-Based Recommendations:** (Planned) Get recommendations based on your searches.
+- **Accessibility:** Keyboard navigation and screen-reader friendly labels.
+
+---
+
+## 🛠 Tech Stack & Tools
+
+### Languages
+
+- **JavaScript** (50%)
+- **CSS** (47.7%)
+- **HTML** (2.3%)
+
+### Frameworks & Libraries
+
+- **React** (UI & Component Management)
+- **Node.js** (Development Environment)
+- **npm** (Dependency Management)
+- **dotenv** (Environment Variable Management)
+- **Axios** or **fetch** (API Requests)
+
+### Development Tools
+
+- **VSCode** (Recommended Editor)
+- **ESLint** (Linting)
+- **Prettier** (Code Formatting)
+- **Git & GitHub** (Version Control & Collaboration)
+- **Google Cloud Console** (API key management for YouTube Data API)
+- **[Optional] React Router** (For routing, if multi-page)
+
+---
+
+## 🌐 APIs Used
+
+### YouTube Data API v3
+
+Comet integrates with YouTube Data API v3 to fetch and play video/music content.
+
+- **API Endpoint for Search:**  
+  `https://www.googleapis.com/youtube/v3/search`
+
+- **Parameters Used:**
+  - `q`: User search query (e.g., “lofi beats”)
+  - `part`: Information to retrieve (`snippet`)
+  - `maxResults`: Number of results (default: 10)
+  - `key`: Your API key
+
+- **API Key:** You need to acquire your own API key from Google Cloud Console.
+- **Quota:** Each API key has daily quotas. Heavy use may hit limits.
+
+🔗 [YouTube Data API Docs](https://developers.google.com/youtube/v3)
+
+---
+
+## 🎥 Screenshots & Demo
+
+### Landing Page  
+![Landing Page](screenshots/landing.png)
+
+### Search Results  
+![Search Results](screenshots/search-results.png)
+
+> **Live Demo:** [Add your deployed app link here!]
+
+---
+
+## 🚀 Installation & Setup
 
 ### Prerequisites
-1. **Node.js**: Ensure you have Node.js installed on your machine.  
-2. **YouTube API Key**: Create a project in Google Cloud Console to generate a YouTube API key.  
 
-### Installation
+- [Node.js (v16+ recommended)](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+- A valid **YouTube Data API v3 key** ([Get from Google Cloud Console](https://console.developers.google.com/))
 
-#### Clone the Repository  
-Clone the project repository to your local machine:
+### 1. Clone the Repository
+
 ```bash
-git clone https://github.com/SatyamPote/comet.git
-cd comet
+git clone https://github.com/SatyamPote/Comet.git
+cd Comet
 ```
 
-#### Install Dependencies
-Install the required Node.js dependencies:
+### 2. Install Dependencies
+
 ```bash
 npm install
 ```
 
-#### Set Up Environment Variables
-Create a `.env` file in the root directory of your project and add your YouTube API key:
-```
+### 3. Configure Environment Variables
+
+Create a `.env` file in the root directory and add:
+
+```env
 REACT_APP_YOUTUBE_API_KEY=YOUR_API_KEY_HERE
 ```
 
-#### Start the Development Server
-Run the following command to start the app locally:
+### 4. Start the Development Server
+
 ```bash
 npm start
 ```
 
-#### Access the App
-Open your browser and visit:
-```
-http://localhost:3000
-```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## ✨ How It Works
+## 🔑 Environment Variables
 
-### Search for Videos
-1. Enter a search query in the search bar (e.g., "lofi beats," "classical music").
-2. Press the **Search** button.
-3. A list of videos will appear, showing their thumbnails and titles.
-
-### Play Videos
-1. Click on any video thumbnail to select it for playback.
-2. The selected video will start playing in an embedded YouTube player.
-
-### Dynamic Features
-- The first video in the search results is auto-selected and played when the results are fetched.
-- Clicking another video will replace the current playback with the newly selected video.
+| Variable                   | Required | Description                            |
+|---------------------------|----------|----------------------------------------|
+| REACT_APP_YOUTUBE_API_KEY | Yes      | YouTube Data API v3 key from Google    |
 
 ---
 
-## 🎥 Screenshots
+## 🏁 Usage Guide
 
-### Landing Page
-The minimal yet aesthetically pleasing landing page with a retro-terminal theme:
+### Searching for Videos/Music
 
-### Search Results
-Dynamic video results are displayed after performing a search:
+- Enter a search query (e.g., “lofi beats”, “80s synthwave”) in the search bar.
+- Click the Search button or press Enter.
+- Browse through the displayed video results.
+- Click a video thumbnail to play it in the embedded player.
+- The first result is auto-selected and played after every new search.
 
----
+### Playlist and Account Features (Planned)
 
-## 🌐 API Integration
-
-This project uses the YouTube Data API v3 to search and retrieve video information.
-
-### Example API Request
-When you perform a search, the app sends a GET request to the YouTube API like this:
-```
-GET https://www.googleapis.com/youtube/v3/search
-```
-
-### Parameters Used
-- **q**: The search query entered by the user.
-- **part**: Specifies the video information to retrieve (e.g., snippet).
-- **maxResults**: Number of results to return (default: 10).
+- Save favorite videos to custom playlists.
+- Sign in via OAuth for personalized experience.
+- Get search-based recommendations.
 
 ---
 
 ## ⚙️ Development Scripts
 
-### Start the development server
-Run the app in development mode:
 ```bash
+# Start development server
 npm start
-```
-This will start the app at [http://localhost:3000](http://localhost:3000).
 
-### Build the production app
-Creates a production build optimized for deployment:
-```bash
+# Build for production
 npm run build
+
+# Lint code
+npm run lint
+
+# Format code
+npm run format
 ```
 
 ---
 
 ## ⚠️ Known Issues
 
-### Autoplay Restrictions
-Some browsers might block autoplay functionality due to user interaction requirements.
-
-### API Rate Limiting
-The app depends on the YouTube Data API, which enforces request quotas. Heavy usage might exceed the quota.
+- **Autoplay Restrictions:** Some browsers block autoplay of media until user interaction.
+- **API Rate Limiting:** If you exceed your YouTube API quota, search will stop working until quota resets.
+- **Ad-blockers:** May interfere with embedded YouTube player.
 
 ---
 
-## 🛠️ Future Enhancements
+## 🚧 Future Enhancements
 
-### Planned Improvements
-1. **Add Playlists**: Allow users to save and organize favorite videos in custom playlists.
-2. **User Authentication**: Use OAuth to personalize user experiences with accounts.
-3. **Video Recommendations**: Dynamically recommend videos based on search history.
+- Playlist Support: Save and manage favorite videos.
+- User Authentication: Login/Signup with OAuth.
+- Personalized Recommendations: Based on search and play history.
+- Dark/Light Mode Toggle
+- Localization: Multi-language support.
+- Progressive Web App (PWA)
 
 ---
 
-## 👏 Credits
+## 🤝 Contributing
 
-- **Google YouTube Data API**: For providing seamless video search and playback capabilities.
-- **React Framework**: For powering the dynamic UI of the project.
-- **Retro Theme Design**: Custom styling inspired by classic terminal aesthetics.
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository  
+2. Create a new branch for your feature or bugfix  
+3. Commit your changes  
+4. Open a pull request  
+
+Before major changes, open an issue to discuss your proposal.  
+See `CONTRIBUTING.md` for more info.
 
 ---
 
 ## 📜 License
 
-This project is licensed under the MIT License. You are free to use, modify, and distribute this project as long as proper credit is given.
+This project is licensed under the MIT License.  
+See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 💬 Feedback & Contributions
+## 💬 Feedback & Support
 
-If you have any ideas, suggestions, or issues, feel free to open an issue or create a pull request on the [GitHub Repository](https://github.com/yourusername/comet).
+- **Issues:** Open an issue on GitHub  
+- **PRs:** Submit a pull request  
+- **Contact:** [satyampote9999@gmail.com] or [https://satyampote.tech/]
+
+---
+
+## 👏 Credits
+
+- Google YouTube Data API – For media search and playback  
+- React – For UI and frontend logic  
+- Node.js – For local development  
+- Retro Theme Design – Custom CSS inspired by classic terminal UIs  
+- Made with 💚 by **SatyamPote** and contributors
